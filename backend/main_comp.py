@@ -1,6 +1,6 @@
 import uuid
 import subprocess
-import json
+import os
 
 
 def main_comp_all(codedata,lang,input_text):
@@ -28,9 +28,29 @@ def main_comp_all(codedata,lang,input_text):
         if result.returncode == 0:
             data = {'output':result.stdout.decode("utf-8"),'type':"success"}
         else:
-            data = {'output':result.stderr.decode("utf-8"), 'type':"error"}
+            out = result.stderr.decode("utf-8")
+            out = out.replace("codes/"+lang+"/"+file_name+'.'+lang,"main."+lang)
+            out = out.replace("F:\\django_projects\\venv-compiler\\nvscompiler\\codes\\"+lang+"\\"+file_name+'.'+lang,"main."+lang)
+            data = {'output':out, 'type':"error"}
         with open("results/"+lang+"/" + file_name+'.txt','w') as f:
             f.write(result.stdout.decode("utf-8"))
+        try:
+            file = "F:/django_projects/venv-compiler/nvscompiler/codes/"+lang+"/"+file_name+'.'+lang
+            if os.path.isfile(file):
+                os.remove(file)
+            file = "F:/django_projects/venv-compiler/nvscompiler/results/"+lang+"/"+file_name+'.txt'
+            if os.path.isfile(file):
+                os.remove(file)
+            if lang=='c':
+                file_exe = "F:/django_projects/venv-compiler/nvscompiler/codes/c/"+file_name+'_exe.exe'
+                if os.path.isfile(file_exe):
+                    os.remove(file_exe)
+            elif lang=="cpp":
+                file_exe = "F:/django_projects/venv-compiler/nvscompiler/codes/cpp/"+file_name+'_exe.exe'
+                if os.path.isfile(file_exe):
+                    os.remove(file_exe)
+        except OSError as e:
+            pass
     except Exception as e:
         data = {'output':e, 'type':'error'}
     return data
