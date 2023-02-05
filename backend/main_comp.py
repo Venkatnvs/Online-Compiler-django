@@ -10,9 +10,9 @@ def main_comp_all(codedata,lang,input_text):
             f.write(codedata)
         if lang=="py":
             if input_text:
-                result = subprocess.run(["F:/django_projects/venv-compiler/Scripts/python.exe","codes/py/"+file_name+'.'+lang], input=input_text.encode(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                result = subprocess.run(["D:/Django/nvscompiler/Scripts/python.exe","codes/py/"+file_name+'.'+lang], input=input_text.encode(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             else:
-                result = subprocess.run(["F:/django_projects/venv-compiler/Scripts/python.exe","codes/py/"+file_name+'.'+lang], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                result = subprocess.run(["D:/Django/nvscompiler/Scripts/python.exe","codes/py/"+file_name+'.'+lang], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if lang=="js":
             result = subprocess.run(["node","codes/js/"+file_name+'.'+lang], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if lang=="cpp":
