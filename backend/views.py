@@ -1,7 +1,5 @@
 import sys
 from django.shortcuts import render
-import uuid
-import subprocess
 from django.http import JsonResponse, HttpResponse
 import json
 from .main_comp import main_comp_all
@@ -30,8 +28,8 @@ def main2(request):
         codedata = request.POST['code']
         lang = request.POST['lang']
         input_text = request.POST['input']
-        # print(codedata)
         output = main_comp_all(codedata,lang,input_text)
+        print(output)
         # context = {'output':output}
         return JsonResponse(output, safe=False)
         # return HttpResponse(json.dumps({'output':output}), content_type="application/json")
