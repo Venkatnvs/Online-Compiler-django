@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$as++k=+w10rr2$j#rfd*5=gs^%aecdbgqpdf1#s!#xw+j0q6#'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'backend',
+    'qtest',
+    'allauth',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +133,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MESSAGE_TAGS = {
+    messages.ERROR :'danger'
+}
+DEFAULT_FROM_EMAIL=config('EMAIL_FROM_EMAIL')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_USE_TLS = config('EMAIL_TLS', cast=bool)
+EMAIL_FROM_EMAIL = config('EMAIL_FROM_EMAIL')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+DATA_OUT_FILES= os.path.join(BASE_DIR, 'data_out')
+PATH_PYTHON = "D:/Django/nvscompiler/Scripts/python.exe"

@@ -1,0 +1,46 @@
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+{i}=>hello
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.0/theme-monokai.js"></script>
+
+
+    <script src="{% static 'backend/src/ace.js' %}"></script>
+    <script src="{% static 'backend/src/theme-monokai.js' %}"></script>
